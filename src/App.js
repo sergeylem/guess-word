@@ -24,21 +24,28 @@ class App extends React.Component {
     this.initialState();
   }
 
-  addLetter = (userLetters, newLetter) => {
-    const underscore = '_';
+  addLetter = (newLetter, userLetters, rndLetters, index) => {
+    const underscore = ' ';
     for (let i = 0; i < userLetters.length; i++) {
       if (userLetters[i] === underscore) {
         userLetters[i] = newLetter;
+        rndLetters[index] = ' ';
         i = userLetters.length; //остановка цикла
       }
     }
     console.log(userLetters);
-    this.setState({ userLetters: userLetters });
+    this.setState({ userLetters, rndLetters });
   }
 
-  delLetter = (userLetters, index) => {
-    userLetters[index] = "_";
-    this.setState({ userLetters: userLetters });
+  delLetter = (letter, userLetters, rndLetters, index) => {
+    for (let i = 0; i < rndLetters.length; i++) {
+      if (rndLetters[i] === ' ') {
+        rndLetters[i] = letter;
+        userLetters[index] = ' ';
+        i = rndLetters.length; //остановка цикла
+      }
+    }
+    this.setState({ userLetters, rndLetters });
   }
 
   removeItemFromWords = () => {
@@ -100,33 +107,35 @@ class App extends React.Component {
         </div> */}
 
         <div className='tc f2 mt3 red'>
-          { "Угадай слово!" }
+          {"Угадай слово!"}
         </div>
 
         <div className='image'>
-          { <img className='tc br4 mt4'
-              src={this.state.words[this.state.targetWordIndex].img} alt='' />
+          {<img className='tc br4 mt4'
+            src={this.state.words[this.state.targetWordIndex].img} alt='' />
           }
         </div>
 
         <div className='word'>
-          { this.state.userLetters.map((item, index) => (
-              <Button letter={item} key={index}
-                click={this.delLetter.bind(this, this.state.userLetters, index)} />
-            )) }
+          {this.state.userLetters.map((item, index) => (
+            <Button letter={item} key={index}
+              click={this.delLetter.
+                bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
+          ))}
         </div>
 
         <div className='words'>
-          { this.state.rndLetters.map((item, index) => (
-              <Button letter={item} key={index}
-                click={this.addLetter.bind(this, this.state.userLetters, item)} />
-            )) }
+          {this.state.rndLetters.map((item, index) => (
+            <Button letter={item} key={index} 
+              click={this.addLetter.
+                bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
+          ))}
         </div>
 
         <button className='tc h2 w4 mt2 br3 b'
-          onClick={this.removeItemFromWords.bind(this)}>Вперед</button>
+          onClick={this.removeItemFromWords.bind(this)}
+        >Вперед</button>
 
-      
       </div>
     );
   }

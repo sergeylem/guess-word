@@ -23,7 +23,7 @@ export const getRndLetter = () => {
 export const putUnderscores = (counts) => {
   const letters = [];
   for (let i = 0; i < counts; i++) {
-    letters.push('_');
+    letters.push(' ');
   }
   return letters;
 }
