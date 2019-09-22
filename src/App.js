@@ -15,6 +15,7 @@ class App extends React.Component {
     targetLetters: [],
     userLetters: [],
     rndLetters: [],
+    isGuessed: false,
     targetWordId: 0,
     targetWordIndex: 0,
     maxCountWords: 2 //Кол-во слов минус 1
@@ -33,8 +34,11 @@ class App extends React.Component {
         i = userLetters.length; //остановка цикла
       }
     }
+    const isGuessed = this.isTheWordGuessed(userLetters);
     console.log(userLetters);
-    this.setState({ userLetters, rndLetters });
+    console.log('isGuessed from addLetter ' + isGuessed);
+
+    this.setState({ userLetters, rndLetters, isGuessed });
   }
 
   delLetter = (letter, userLetters, rndLetters, index) => {
@@ -46,6 +50,18 @@ class App extends React.Component {
       }
     }
     this.setState({ userLetters, rndLetters });
+  }
+
+  isTheWordGuessed = (userLetters) => {
+    for (let i = 0; i < this.state.targetLetters.length; i++) {
+      if (userLetters[i] !== this.state.targetLetters[i]) {
+        console.log("user " + userLetters[i]);
+        console.log("target " + this.state.targetLetters[i]);
+        console.log("targetLetters " + this.state.targetLetters);
+        return false;
+      }
+    }
+    return true;
   }
 
   removeItemFromWords = () => {
@@ -66,16 +82,18 @@ class App extends React.Component {
 
       const userLetters = putUnderscores(newTargetLetters.length);
       const countLettersToAdd = Math.floor(newTargetLetters.length / 3);
-      const rndLetters = getRndLetters(newTargetLetters, countLettersToAdd)
+
+      const targetLetters = [...newTargetLetters]; //it's must be, as targetLetters will be changed
+      const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
       console.log('rndLetters: ' + rndLetters);
 
       this.setState({
         words: tmpArray,
-        targetWordId: newWordId, targetWordIndex: newIndex, targetLetters: newTargetLetters,
-        userLetters, rndLetters, maxCountWords
+        targetLetters: newTargetLetters, targetWordId: newWordId, targetWordIndex: newIndex, 
+        userLetters, rndLetters, maxCountWords, isGuessed: false
       });
     }
-  }
+  } 
 
   initialState = () => {
     console.log(this.state.words);
@@ -97,15 +115,6 @@ class App extends React.Component {
     return (
       <div className="form">
 
-        {/* <div className=''>
-          <div className='form center pa5 br3 shadow-5'>
-            <input className='f4 pa2 w-70 center' type='tex'  />
-            <button
-              className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple'
-            >Detect</button>
-          </div>
-        </div> */}
-
         <div className='tc f2 mt3 red'>
           {"Угадай слово!"}
         </div>
@@ -116,25 +125,32 @@ class App extends React.Component {
           }
         </div>
 
-        <div className='word'>
-          {this.state.userLetters.map((item, index) => (
-            <Button letter={item} key={index}
-              click={this.delLetter.
-                bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
-          ))}
-        </div>
+        { !this.state.isGuessed ? 
+        <div>
+          <div className='word'>
+            {this.state.userLetters.map((item, index) => (
+              <Button letter={item} key={index}
+                click={this.delLetter.
+                  bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
+            ))}
+          </div>
 
-        <div className='words'>
-          {this.state.rndLetters.map((item, index) => (
-            <Button letter={item} key={index} 
-              click={this.addLetter.
-                bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
-          ))}
-        </div>
+          <div className='words'>
+            {this.state.rndLetters.map((item, index) => (
+              <Button letter={item} key={index}
+                click={this.addLetter.
+                  bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
+            ))}
+          </div>
+        </div> :
+        <div>
+          <h1>{this.state.targetLetters}</h1>
 
-        <button className='tc h2 w4 mt2 br3 b'
-          onClick={this.removeItemFromWords.bind(this)}
-        >Вперед</button>
+          <button className='tc h2 w4 mt2 br3 b'
+            onClick={this.removeItemFromWords.bind(this)}
+          >Вперед</button>
+        </div>
+      }  
 
       </div>
     );
