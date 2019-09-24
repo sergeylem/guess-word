@@ -4,26 +4,22 @@ import './App.css';
 import {
   getRndNumber, putUnderscores, getRndLetters,
 } from './utils';
+import DATA from './data/words-data';
+
+import Confetti from './components/confetti/confetti';
+import PlaySound from './components/play-sound';
 
 class App extends React.Component {
-  state = {
-    words: [
-      { id: 0, img: require('./assets/images/0.jpg'), word: 'ДЕРЕВО' },
-      { id: 1, img: require('./assets/images/1.jpg'), word: 'КНИГА' },
-      { id: 2, img: require('./assets/images/2.jpg'), word: 'МАШИНА' }
-    ],
-    targetLetters: [],
-    userLetters: [],
-    rndLetters: [],
-    isGuessed: false,
-    targetWordId: 0,
-    targetWordIndex: 0,
-    maxCountWords: 2 //Кол-во слов минус 1
-  }
+  state = DATA;
 
   componentDidMount = () => {
     this.initialState();
   }
+
+  onAnimationEnd = () => {
+    this.setState({ isFade: false })
+  }
+
 
   addLetter = (newLetter, userLetters, rndLetters, index) => {
     const underscore = ' ';
@@ -35,10 +31,18 @@ class App extends React.Component {
       }
     }
     const isGuessed = this.isTheWordGuessed(userLetters);
+
     console.log(userLetters);
     console.log('isGuessed from addLetter ' + isGuessed);
 
-    this.setState({ userLetters, rndLetters, isGuessed });
+
+    this.setState({ userLetters, rndLetters });
+
+    if (isGuessed) {
+      this.setState({ isConfetti: true });
+      setTimeout(() => this.setState({ isGuessed, isConfetti: false, isFade: true }), 3000);
+    } else
+      this.setState({ isGuessed });
   }
 
   delLetter = (letter, userLetters, rndLetters, index) => {
@@ -55,13 +59,10 @@ class App extends React.Component {
   isTheWordGuessed = (userLetters) => {
     for (let i = 0; i < this.state.targetLetters.length; i++) {
       if (userLetters[i] !== this.state.targetLetters[i]) {
-        console.log("user " + userLetters[i]);
-        console.log("target " + this.state.targetLetters[i]);
-        console.log("targetLetters " + this.state.targetLetters);
         return false;
       }
     }
-    return true;
+    return true; //The word has been guessed!
   }
 
   removeItemFromWords = () => {
@@ -89,11 +90,11 @@ class App extends React.Component {
 
       this.setState({
         words: tmpArray,
-        targetLetters: newTargetLetters, targetWordId: newWordId, targetWordIndex: newIndex, 
-        userLetters, rndLetters, maxCountWords, isGuessed: false
+        targetLetters: newTargetLetters, targetWordId: newWordId, targetWordIndex: newIndex,
+        userLetters, rndLetters, maxCountWords, isGuessed: false, isFade: true
       });
     }
-  } 
+  }
 
   initialState = () => {
     console.log(this.state.words);
@@ -112,8 +113,12 @@ class App extends React.Component {
   }
 
   render() {
+    const isFade = this.state.isFade
     return (
-      <div className="form">
+      <div
+        className={isFade ? 'form-fade-animation' : 'form'}
+        onAnimationEnd={() => this.onAnimationEnd()}
+      >
 
         <div className='tc f2 mt3 red'>
           {"Угадай слово!"}
@@ -125,32 +130,44 @@ class App extends React.Component {
           }
         </div>
 
-        { !this.state.isGuessed ? 
-        <div>
-          <div className='word'>
-            {this.state.userLetters.map((item, index) => (
-              <Button letter={item} key={index}
-                click={this.delLetter.
-                  bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
-            ))}
-          </div>
+        {!this.state.isGuessed ?
+          <div>
+            <div className='word'>
+              {this.state.userLetters.map((item, index) => (
+                <Button letter={item} key={index}
+                  click={this.delLetter.bind(
+                    this, item, this.state.userLetters, this.state.rndLetters, index)} />
+              ))}
+            </div>
 
-          <div className='words'>
-            {this.state.rndLetters.map((item, index) => (
-              <Button letter={item} key={index}
-                click={this.addLetter.
-                  bind(this, item, this.state.userLetters, this.state.rndLetters, index)} />
-            ))}
-          </div>
-        </div> :
-        <div>
-          <h1>{this.state.targetLetters}</h1>
+            <div className='words'>
+              {this.state.rndLetters.map((item, index) => (
+                <Button letter={item} key={index}
+                  click={this.addLetter.bind(
+                    this, item, this.state.userLetters, this.state.rndLetters, index)} />
+              ))}
+            </div>
+            {this.state.isConfetti ?
+              <div>
+                <Confetti />
+                <PlaySound urlStr= { require('./assets/sounds/s2.mp3') }/>
+              </div> :
+              null
+            }
 
-          <button className='tc h2 w4 mt2 br3 b'
-            onClick={this.removeItemFromWords.bind(this)}
-          >Вперед</button>
-        </div>
-      }  
+          </div> :
+          <div>
+            <h1>{this.state.targetLetters}</h1>
+            <img
+              className={'tc w4 h4 mt2'}
+              src={require('./assets/icons/arrow-next.png')} alt=''
+              onClick={this.removeItemFromWords.bind(this)}
+              onAnimationEnd={() => this.onAnimation}
+            />
+
+          </div>
+        }
+
 
       </div>
     );

@@ -3,13 +3,25 @@
 
 }
 
+.form-fade-animation {
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  animation: fade-in-keyframes 1s;  
+}
+/*For animation */
+@keyframes fade-in-keyframes {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
 .form {
   width: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%); w3c */
-
 }
 
 .image {
