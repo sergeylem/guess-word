@@ -20,7 +20,6 @@ class App extends React.Component {
     this.setState({ isFade: false })
   }
 
-
   addLetter = (newLetter, userLetters, rndLetters, index) => {
     const underscore = ' ';
     for (let i = 0; i < userLetters.length; i++) {
@@ -82,7 +81,7 @@ class App extends React.Component {
       const newWordId = tmpArray[newIndex].id;
 
       const userLetters = putUnderscores(newTargetLetters.length);
-      const countLettersToAdd = Math.floor(newTargetLetters.length / 3);
+      const countLettersToAdd = 0; //Math.floor(newTargetLetters.length / 3);
 
       const targetLetters = [...newTargetLetters]; //it's must be, as targetLetters will be changed
       const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
@@ -103,7 +102,7 @@ class App extends React.Component {
     const targetLetters = [...this.state.words[index].word];
     const targetWordId = this.state.words[index].id;
     const userLetters = putUnderscores(targetLetters.length);
-    const countLettersToAdd = Math.floor(targetLetters.length / 3);
+    const countLettersToAdd = 0; //Math.floor(targetLetters.length / 3);
     const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
 
     this.setState({
@@ -115,22 +114,17 @@ class App extends React.Component {
   render() {
     const isFade = this.state.isFade
     return (
-      <div
-        className={isFade ? 'form-fade-animation' : 'form'}
+      <div className={isFade ? 'form-fade-animation' : 'form'}
         onAnimationEnd={() => this.onAnimationEnd()}
       >
-
         <div className='tc f2 mt3 red'>
-          {"Угадай слово!"}
+          "Угадай слово!"
         </div>
 
-        <div className='image'>
-          {<img className='tc br4 mt4'
-            src={this.state.words[this.state.targetWordIndex].img} alt='' />
-          }
-        </div>
+        <img className='tc br4 mt4 image'
+          src={this.state.words[this.state.targetWordIndex].img} alt='' />
 
-        {!this.state.isGuessed ?
+        { !this.state.isGuessed ?
           <div>
             <div className='word'>
               {this.state.userLetters.map((item, index) => (
@@ -147,14 +141,13 @@ class App extends React.Component {
                     this, item, this.state.userLetters, this.state.rndLetters, index)} />
               ))}
             </div>
-            {this.state.isConfetti ?
+            { this.state.isConfetti ?
               <div>
                 <Confetti />
-                <PlaySound urlStr= { require('./assets/sounds/s2.mp3') }/>
+                <PlaySound urlStr={require('./assets/sounds/s2.mp3')} />
               </div> :
               null
             }
-
           </div> :
           <div>
             <h1>{this.state.targetLetters}</h1>
@@ -164,10 +157,8 @@ class App extends React.Component {
               onClick={this.removeItemFromWords.bind(this)}
               onAnimationEnd={() => this.onAnimation}
             />
-
           </div>
         }
-
 
       </div>
     );
