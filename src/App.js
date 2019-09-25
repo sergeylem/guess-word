@@ -118,10 +118,10 @@ class App extends React.Component {
         onAnimationEnd={() => this.onAnimationEnd()}
       >
         <div className='tc f2 mt3 red'>
-          "Угадай слово!"
+          Угадай слово!
         </div>
 
-        <img className='tc br4 mt4 image'
+        <img className='tc br4 mt4 mb4 image'
           src={this.state.words[this.state.targetWordIndex].img} alt='' />
 
         { !this.state.isGuessed ?
@@ -150,7 +150,7 @@ class App extends React.Component {
             }
           </div> :
           <div>
-            <h1>{this.state.targetLetters}</h1>
+            <div className='tc f2 b pt2 pb4'>{this.state.targetLetters}</div>
             <img
               className={'tc w4 h4 mt2'}
               src={require('./assets/icons/arrow-next.png')} alt=''
