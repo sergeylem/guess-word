@@ -33,7 +33,9 @@ const DATA = {
     isFade: false,
     targetWordId: 0,
     targetWordIndex: 0,
-    maxCountWords: 23 //Кол-во слов минус 1
+    maxCountWords: 23, //Кол-во слов минус 1
+    viewportWidth: 0,
+    viewportHeight: 0
 }
 
 export default DATA;

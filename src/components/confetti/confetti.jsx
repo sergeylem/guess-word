@@ -2,13 +2,13 @@ import React from 'react'
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
 
-export default () => {
+export default (props) => {
   useWindowSize();
   return (
     <Confetti
-      width={'1000'}
-      height={'1000'}
-      numberOfPieces={'100'}
+      width={props.viewportWidth}
+      height={props.viewportHeight}
+      numberOfPieces={'100'}      
     />
   )
 }

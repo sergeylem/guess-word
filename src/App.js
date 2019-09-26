@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './components/button/button';
-import './App.css';
+import './App.scss';
 import {
   getRndNumber, putUnderscores, getRndLetters,
 } from './utils';
@@ -105,9 +105,11 @@ class App extends React.Component {
     const countLettersToAdd = 0; //Math.floor(targetLetters.length / 3);
     const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
 
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
     this.setState({
       targetWordId, targetWordIndex: index, targetLetters: [...this.state.words[index].word],
-      userLetters, rndLetters
+      userLetters, rndLetters, viewportWidth, viewportHeight
     });
   }
 
@@ -117,16 +119,16 @@ class App extends React.Component {
       <div className={isFade ? 'form-fade-animation' : 'form'}
         onAnimationEnd={() => this.onAnimationEnd()}
       >
-        <div className='tc f2 mt3 red'>
+        <div className='title'>
           Угадай слово!
         </div>
 
-        <img className='tc br4 mt4 mb4 image'
+        <img className='image'
           src={this.state.words[this.state.targetWordIndex].img} alt='' />
 
-        { !this.state.isGuessed ?
+        {!this.state.isGuessed ?
           <div>
-            <div className='word'>
+            <div className='words'>
               {this.state.userLetters.map((item, index) => (
                 <Button letter={item} key={index}
                   click={this.delLetter.bind(
@@ -141,25 +143,25 @@ class App extends React.Component {
                     this, item, this.state.userLetters, this.state.rndLetters, index)} />
               ))}
             </div>
-            { this.state.isConfetti ?
+            {this.state.isConfetti ?
               <div>
-                <Confetti />
+                <Confetti viewportWidth={this.state.viewportWidth} 
+                  viewportHeight={this.state.viewportHeight}/>
                 <PlaySound urlStr={require('./assets/sounds/s2.mp3')} />
               </div> :
               null
             }
           </div> :
           <div>
-            <div className='tc f2 b pt2 pb4'>{this.state.targetLetters}</div>
+            <div className='word'>{this.state.targetLetters}</div>
             <img
-              className={'tc w4 h4 mt2'}
+              className={'arrow-next'}
               src={require('./assets/icons/arrow-next.png')} alt=''
               onClick={this.removeItemFromWords.bind(this)}
               onAnimationEnd={() => this.onAnimation}
             />
           </div>
         }
-
       </div>
     );
   }
