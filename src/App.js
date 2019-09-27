@@ -117,8 +117,8 @@ class App extends React.Component {
     const isFade = this.state.isFade
     return (
       <div className={isFade ? 'form-fade-animation' : 'form'}
-        onAnimationEnd={() => this.onAnimationEnd()}
-      >
+        onAnimationEnd={() => this.onAnimationEnd()} >
+          
         <div className='title'>
           Угадай слово!
         </div>
@@ -146,7 +146,8 @@ class App extends React.Component {
             {this.state.isConfetti ?
               <div>
                 <Confetti viewportWidth={this.state.viewportWidth} 
-                  viewportHeight={this.state.viewportHeight}/>
+                  viewportHeight={this.state.viewportHeight}
+                  numberOfPieces={'100'} />
                 <PlaySound urlStr={require('./assets/sounds/s2.mp3')} />
               </div> :
               null

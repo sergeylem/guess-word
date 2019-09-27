@@ -8,7 +8,7 @@ export default (props) => {
     <Confetti
       width={props.viewportWidth}
       height={props.viewportHeight}
-      numberOfPieces={'100'}      
+      numberOfPieces={props.numberOfPieces}      
     />
   )
 }
