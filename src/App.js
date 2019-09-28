@@ -30,6 +30,10 @@ class App extends React.Component {
       }
     }
     const isGuessed = this.isTheWordGuessed(userLetters);
+    let isGameOver = this.state.isGameOver;
+    if (this.state.words.length === 1) {
+      isGameOver = true;
+    }
 
     console.log(userLetters);
     console.log('isGuessed from addLetter ' + isGuessed);
@@ -39,7 +43,7 @@ class App extends React.Component {
 
     if (isGuessed) {
       this.setState({ isConfetti: true });
-      setTimeout(() => this.setState({ isGuessed, isConfetti: false, isFade: true }), 3000);
+      setTimeout(() => this.setState({ isGuessed, isGameOver, isConfetti: false, isFade: true }), 3000);
     } else
       this.setState({ isGuessed });
   }
@@ -118,9 +122,12 @@ class App extends React.Component {
     return (
       <div className={isFade ? 'form-fade-animation' : 'form'}
         onAnimationEnd={() => this.onAnimationEnd()} >
-          
-        <div className='title'>
-          Угадай слово!
+
+        <div className='title'> 
+        {!this.state.isGameOver ? 
+          "Угадай слово!" :
+          "Молодец Поздравляем!" 
+        }
         </div>
 
         <img className='image'
@@ -145,7 +152,7 @@ class App extends React.Component {
             </div>
             {this.state.isConfetti ?
               <div>
-                <Confetti viewportWidth={this.state.viewportWidth} 
+                <Confetti viewportWidth={this.state.viewportWidth}
                   viewportHeight={this.state.viewportHeight}
                   numberOfPieces={'100'} />
                 <PlaySound urlStr={require('./assets/sounds/s2.mp3')} />
@@ -155,12 +162,16 @@ class App extends React.Component {
           </div> :
           <div>
             <div className='word'>{this.state.targetLetters}</div>
-            <img
-              className={'arrow-next'}
-              src={require('./assets/icons/arrow-next.png')} alt=''
-              onClick={this.removeItemFromWords.bind(this)}
-              onAnimationEnd={() => this.onAnimation}
-            />
+            {!this.state.isGameOver
+              ? <img
+                  className={'arrow-next'}
+                  src={require('./assets/icons/arrow-next.png')} alt=''
+                  onClick={this.removeItemFromWords.bind(this)}
+                  onAnimationEnd={() => this.onAnimation}
+              />
+              :
+                <PlaySound urlStr={require('./assets/sounds/victory.mp3')} />
+            }
           </div>
         }
       </div>

@@ -23,17 +23,29 @@ const DATA = {
       { id: 20, img: require('../assets/images/20.jpg'), word: 'ЧАЙНИК' },
       { id: 21, img: require('../assets/images/21.jpg'), word: 'СТОЛ' },
       { id: 22, img: require('../assets/images/22.jpg'), word: 'ДОМ' },
-      { id: 23, img: require('../assets/images/23.jpg'), word: 'РЫБКА' }
+      { id: 23, img: require('../assets/images/23.jpg'), word: 'РЫБКА' },
+      { id: 24, img: require('../assets/images/24.jpg'), word: 'КРЕСЛО' },
+      { id: 25, img: require('../assets/images/25.jpg'), word: 'СВЕКЛА' },
+      { id: 26, img: require('../assets/images/26.jpg'), word: 'КРОВАТЬ' },
+      { id: 27, img: require('../assets/images/27.jpg'), word: 'ТОРТ' },
+      { id: 28, img: require('../assets/images/28.jpg'), word: 'ГИТАРА' },
+      { id: 29, img: require('../assets/images/29.jpg'), word: 'ПИРОГ' },
+      { id: 30, img: require('../assets/images/30.jpg'), word: 'ЗОНТИК' },
+      { id: 31, img: require('../assets/images/31.jpg'), word: 'МАСЛО' },
+      { id: 32, img: require('../assets/images/32.jpg'), word: 'МЁД' },
+      { id: 33, img: require('../assets/images/33.jpg'), word: 'МОРКОВЬ' },
+      { id: 34, img: require('../assets/images/34.jpg'), word: 'ХЛЕБ' }      
     ],
     targetLetters: [],
     userLetters: [],
     rndLetters: [],
     isGuessed: false,
+    isGameOver: false,
     isConfetti: false,
     isFade: false,
     targetWordId: 0,
     targetWordIndex: 0,
-    maxCountWords: 23, //Кол-во слов минус 1
+    maxCountWords: 33, //Кол-во слов минус 1
     viewportWidth: 0,
     viewportHeight: 0
 }
