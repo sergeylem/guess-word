@@ -166,8 +166,8 @@ class App extends React.Component {
               ? <img
                   className={'arrow-next'}
                   src={require('./assets/icons/arrow-next.png')} alt=''
-                  onClick={this.removeItemFromWords.bind(this)}
                   onAnimationEnd={() => this.onAnimation}
+                  onClick={this.removeItemFromWords.bind(this)}
               />
               :
                 <PlaySound urlStr={require('./assets/sounds/victory.mp3')} />
