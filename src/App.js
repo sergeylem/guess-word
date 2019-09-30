@@ -166,7 +166,7 @@ class App extends React.Component {
               ? <img
                   className={'arrow-next'}
                   src={require('./assets/icons/arrow-next.png')} alt=''
-                  onAnimationEnd={() => this.onAnimation}
+                  // onAnimationEnd={() => this.onAnimation}
                   onClick={this.removeItemFromWords.bind(this)}
               />
               :
