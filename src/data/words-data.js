@@ -45,7 +45,7 @@ const DATA = {
     isFade: false,
     targetWordId: 0,
     targetWordIndex: 0,
-    maxCountWords: 2, //Кол-во слов минус 1
+    maxCountWords: 34, //Кол-во слов минус 1
     viewportWidth: 0,
     viewportHeight: 0
 }
