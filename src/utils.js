@@ -31,13 +31,23 @@ export const putUnderscores = (counts) => {
 export const getRndLetters = (targetLetters, countLettersToAdd) => {
   let rndLetters = targetLetters;
   for (let i = 0; i < countLettersToAdd; i++) {
-    rndLetters.push(getRndLetter());
+    rndLetters.push(getRndLetter()); //добавить случайные буквы в количестве countLettersToAdd
   }
-  const indexes = getRndNumbers(targetLetters.length); //Получить массив случайных индексов
-  const sortedLetters = []; //Очистка массива
-  for (let i = 0; i < targetLetters.length; i++) {
+  const quantityOfLetters = targetLetters.length;
+  let indexes = getRndNumbers(quantityOfLetters); //Получить массив случайных индексов
+  let sortedLetters = []; //Очистка массива
+
+ // debugger;
+  for (let i = 0; i < quantityOfLetters; i++) {
     sortedLetters.push(rndLetters[indexes[i]]);
+    if ((i === quantityOfLetters - 1) &&
+      (JSON.stringify(sortedLetters) === JSON.stringify(targetLetters))) {
+      indexes = getRndNumbers(quantityOfLetters);
+      sortedLetters = [];
+      i = -1; //so it'll be new iteration i++
+    }
   }
-//  console.log(indexes);
+
+
   return sortedLetters;
 }

@@ -107,7 +107,7 @@ class App extends React.Component {
     const targetWordId = this.state.words[index].id;
     const userLetters = putUnderscores(targetLetters.length);
     const countLettersToAdd = 0; //Math.floor(targetLetters.length / 3);
-    const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
+    const rndLetters = getRndLetters(targetLetters, countLettersToAdd);
 
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -121,7 +121,8 @@ class App extends React.Component {
     const isFade = this.state.isFade
     return (
       <div className={isFade ? 'form-fade-animation' : 'form'}
-        onAnimationEnd={() => this.onAnimationEnd()} >
+        //onAnimationEnd={() => this.onAnimationEnd()} 
+      >
 
         <div className='title'> 
         {!this.state.isGameOver ? 
@@ -166,7 +167,7 @@ class App extends React.Component {
               ? <img
                   className={'arrow-next'}
                   src={require('./assets/icons/arrow-next.png')} alt=''
-                  // onAnimationEnd={() => this.onAnimation}
+                  onAnimationEnd={() => this.onAnimation}
                   onClick={this.removeItemFromWords.bind(this)}
               />
               :

@@ -1,13 +1,13 @@
 const DATA = {
     words: [
-      { id: 0, img: require('../assets/images/0.jpg'), word: 'ШАПКА' },
-      { id: 1, img: require('../assets/images/1.jpg'), word: 'ДЕРЕВО' },
-      { id: 2, img: require('../assets/images/2.jpg'), word: 'КНИГА' },
+      { id: 0, img: require('../assets/images/0.jpg'), word: 'МЁД' },
+      { id: 1, img: require('../assets/images/1.jpg'), word: 'СОК' },
+      { id: 2, img: require('../assets/images/2.jpg'), word: 'КОТ' },
       { id: 3, img: require('../assets/images/3.jpg'), word: 'МАШИНА' },
       { id: 4, img: require('../assets/images/4.jpg'), word: 'МОЛОКО' },
-      { id: 5, img: require('../assets/images/5.jpg'), word: 'СОК' },
+      { id: 5, img: require('../assets/images/5.jpg'), word: 'ДЕРЕВО' },
       { id: 6, img: require('../assets/images/6.jpg'), word: 'РОЗА' },
-      { id: 7, img: require('../assets/images/7.jpg'), word: 'КОТ' },
+      { id: 7, img: require('../assets/images/7.jpg'), word: 'КНИГА' },
       { id: 8, img: require('../assets/images/8.jpg'), word: 'ЛИСА' },
       { id: 9, img: require('../assets/images/9.jpg'), word: 'ГРУША' },
       { id: 10, img: require('../assets/images/10.jpg'), word: 'ДЫНЯ' },
@@ -32,7 +32,7 @@ const DATA = {
       { id: 29, img: require('../assets/images/29.jpg'), word: 'ПИРОГ' },
       { id: 30, img: require('../assets/images/30.jpg'), word: 'ЗОНТИК' },
       { id: 31, img: require('../assets/images/31.jpg'), word: 'МАСЛО' },
-      { id: 32, img: require('../assets/images/32.jpg'), word: 'МЁД' },
+      { id: 32, img: require('../assets/images/32.jpg'), word: 'ШАПКА' },
       { id: 33, img: require('../assets/images/33.jpg'), word: 'МОРКОВЬ' },
       { id: 34, img: require('../assets/images/34.jpg'), word: 'ХЛЕБ' }      
     ],
@@ -45,7 +45,7 @@ const DATA = {
     isFade: false,
     targetWordId: 0,
     targetWordIndex: 0,
-    maxCountWords: 33, //Кол-во слов минус 1
+    maxCountWords: 2, //Кол-во слов минус 1
     viewportWidth: 0,
     viewportHeight: 0
 }
