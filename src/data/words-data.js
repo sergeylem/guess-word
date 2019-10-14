@@ -34,7 +34,13 @@ const DATA = {
       { id: 31, img: require('../assets/images/31.jpg'), word: 'МАСЛО' },
       { id: 32, img: require('../assets/images/32.jpg'), word: 'ШАПКА' },
       { id: 33, img: require('../assets/images/33.jpg'), word: 'МОРКОВЬ' },
-      { id: 34, img: require('../assets/images/34.jpg'), word: 'ХЛЕБ' }      
+      { id: 34, img: require('../assets/images/34.jpg'), word: 'ХЛЕБ' },      
+      { id: 35, img: require('../assets/images/35.jpg'), word: 'БАБОЧКА' },      
+      { id: 36, img: require('../assets/images/36.jpg'), word: 'БАРАБАН' },      
+      { id: 37, img: require('../assets/images/37.jpg'), word: 'БРЮКИ' },      
+      { id: 38, img: require('../assets/images/38.jpg'), word: 'ДИВАН' },      
+      { id: 39, img: require('../assets/images/39.jpg'), word: 'ФУТБОЛ' },      
+      { id: 40, img: require('../assets/images/40.jpg'), word: 'КЕПКА' }      
     ],
     targetLetters: [],
     userLetters: [],
@@ -45,7 +51,7 @@ const DATA = {
     isFade: false,
     targetWordId: 0,
     targetWordIndex: 0,
-    maxCountWords: 34, //Кол-во слов минус 1
+    maxCountWords: 40, //Кол-во слов минус 1
     viewportWidth: 0,
     viewportHeight: 0
 }
