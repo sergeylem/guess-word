@@ -40,7 +40,17 @@ const DATA = {
       { id: 37, img: require('../assets/images/37.jpg'), word: 'БРЮКИ' },      
       { id: 38, img: require('../assets/images/38.jpg'), word: 'ДИВАН' },      
       { id: 39, img: require('../assets/images/39.jpg'), word: 'ФУТБОЛ' },      
-      { id: 40, img: require('../assets/images/40.jpg'), word: 'КЕПКА' }      
+      { id: 40, img: require('../assets/images/40.jpg'), word: 'КЕПКА' },      
+      { id: 41, img: require('../assets/images/41.jpg'), word: 'КОРОБКА' },      
+      { id: 42, img: require('../assets/images/42.jpg'), word: 'КОРОВА' },      
+      { id: 43, img: require('../assets/images/43.jpg'), word: 'КОВЁР' },      
+      { id: 44, img: require('../assets/images/44.jpg'), word: 'МЯЧ' },      
+      { id: 45, img: require('../assets/images/45.jpg'), word: 'НОСКИ' },      
+      { id: 46, img: require('../assets/images/46.jpg'), word: 'ПОДУШКА' },      
+      { id: 47, img: require('../assets/images/47.jpg'), word: 'ТАПОЧКИ' },      
+      { id: 48, img: require('../assets/images/48.jpg'), word: 'ТЕЛЕФОН' },      
+      { id: 49, img: require('../assets/images/49.jpg'), word: 'ВАЗА' },      
+      { id: 50, img: require('../assets/images/50.jpg'), word: 'ВЕЛОСИПЕД' }      
     ],
     targetLetters: [],
     userLetters: [],
@@ -51,7 +61,7 @@ const DATA = {
     isFade: false,
     targetWordId: 0,
     targetWordIndex: 0,
-    maxCountWords: 40, //Кол-во слов минус 1
+    maxCountWords: 50, //Кол-во слов минус 1
     viewportWidth: 0,
     viewportHeight: 0
 }
