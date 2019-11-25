@@ -35,8 +35,8 @@ class App extends React.Component {
       isGameOver = true;
     }
 
-    console.log(userLetters);
-    console.log('isGuessed from addLetter ' + isGuessed);
+//    console.log(userLetters);
+//    console.log('isGuessed from addLetter ' + isGuessed);
 
 
     this.setState({ userLetters, rndLetters });
