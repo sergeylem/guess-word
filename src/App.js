@@ -38,7 +38,6 @@ class App extends React.Component {
 //    console.log(userLetters);
 //    console.log('isGuessed from addLetter ' + isGuessed);
 
-
     this.setState({ userLetters, rndLetters });
 
     if (isGuessed) {
