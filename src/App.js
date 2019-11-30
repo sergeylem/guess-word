@@ -68,8 +68,8 @@ class App extends React.Component {
   }
 
   removeItemFromWords = () => {
-    console.log('words ');
-    console.log(this.state.words);
+//    console.log('words ');
+//    console.log(this.state.words);
 
     const removedId = this.state.targetWordId;
     let tmpArray = this.state.words;  //words записываю во временный массив 
@@ -88,7 +88,7 @@ class App extends React.Component {
 
       const targetLetters = [...newTargetLetters]; //it's must be, as targetLetters will be changed
       const rndLetters = getRndLetters(targetLetters, countLettersToAdd)
-      console.log('rndLetters: ' + rndLetters);
+//      console.log('rndLetters: ' + rndLetters);
 
       this.setState({
         words: tmpArray,
@@ -99,7 +99,7 @@ class App extends React.Component {
   }
 
   initialState = () => {
-    console.log(this.state.words);
+//    console.log(this.state.words);
 
     const index = getRndNumber(0, this.state.maxCountWords); //index of random array of words
     const targetLetters = [...this.state.words[index].word];
