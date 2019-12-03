@@ -48,6 +48,5 @@ export const getRndLetters = (targetLetters, countLettersToAdd) => {
     }
   }
 
-
   return sortedLetters;
 }
